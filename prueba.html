@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATBOL GLOBAL HOLDINGS S.R.L. | Administración de Contratos y Recuperación de Activos</title>
+    <meta name="description" content="MATBOL GLOBAL HOLDINGS S.R.L. — División ACRA. Administración de Contratos y Recuperación de Activos. Formalización y seguimiento de operaciones de financiamiento privado entre particulares.">
+    <meta name="keywords" content="MATBOL, ACRA, contratos, financiamiento privado, recuperación de activos, seguridad jurídica">
+    <meta name="theme-color" content="#050811">
+
+    <!-- Open Graph (redes sociales) -->
+    <meta property="og:title" content="MATBOL GLOBAL HOLDINGS S.R.L.">
+    <meta property="og:description" content="Administración de Contratos y Recuperación de Activos.">
+    <meta property="og:image" content="logo1.jpg">
+    <meta property="og:type" content="website">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        matbolBg: '#050811',
+                        matbolBgAlt: '#0A0F1E',
+                        matbolSurface: '#0D1322',
+                        matbolGold: '#C5A028',
+                        matbolGoldHover: '#E5C158',
+                        matbolGoldSoft: '#F0D77A',
+                        matbolText: '#94A3B8',
+                        matbolTextLight: '#CBD5E1'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #C5A028;
+            --gold-hover: #E5C158;
+            --gold-soft: #F0D77A;
+            --bg: #050811;
+            --surface: #0D1322;
+        }
+
+        * { -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050811;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+        /* ============ FONDOS ROTATIVOS ============ */
+        .bg-slider {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+        }
+        .bg-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transform: scale(1.08);
+            transition: opacity 2.5s ease-in-out, transform 12s ease-out;
+        }
+        .bg-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .bg-slide:nth-child(1) { background-image: url('fondo1.jpg'); }
+        .bg-slide:nth-child(2) { background-image: url('fondo2.jpg'); }
+        .bg-slide:nth-child(3) { background-image: url('fondo3.jpg'); }
+
+        .bg-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(180deg,
+                rgba(5, 8, 17, 0.55) 0%,
+                rgba(5, 8, 17, 0.78) 40%,
+                rgba(5, 8, 17, 0.93) 70%,
+                rgba(5, 8, 17, 1) 100%
+            );
+        }
+        .bg-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(197, 160, 40, 0.1) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        /* ============ BORDES ============ */
+        .gold-border { border-color: rgba(197, 160, 40, 0.25); }
+        .gold-border-strong { border-color: rgba(197, 160, 40, 0.6); }
+
+        /* ============ TEXTO DORADO ============ */
+        .gold-text {
+            background: linear-gradient(90deg, #C5A028 0%, #F0D77A 50%, #C5A028 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .gold-glow { text-shadow: 0 0 40px rgba(197, 160, 40, 0.25); }
+
+        /* ============ BOTONES ============ */
+        .btn-gold {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #C5A028 0%, #E5C158 100%);
+            color: #050811;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s;
+        }
+        .btn-gold:hover::before { left: 100%; }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(197, 160, 40, 0.45);
+        }
+
+        .btn-ghost {
+            background: rgba(13, 19, 34, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 40, 0.25);
+            color: #E2E8F0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-ghost:hover {
+            border-color: #C5A028;
+            background: rgba(197, 160, 40, 0.1);
+            color: #F0D77A;
+            transform: translateY(-2px);
+        }
+
+        /* ============ TARJETAS ============ */
+        .card-premium {
+            position: relative;
+            background: linear-gradient(135deg, rgba(13, 19, 34, 0.92) 0%, rgba(10, 15, 30, 0.95) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 40, 0.15);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-premium:hover {
+            border-color: rgba(197, 160, 40, 0.5);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .card-featured {
+            background: linear-gradient(135deg, rgba(13, 19, 34, 0.95) 0%, rgba(21, 29, 51, 0.98) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 40, 0.5);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============ LOGO ============ */
+        .logo-img {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s;
+            filter: drop-shadow(0 0 12px rgba(197, 160, 40, 0.25));
+        }
+        .logo-img:hover {
+            transform: scale(1.06);
+            filter: drop-shadow(0 0 20px rgba(197, 160, 40, 0.6));
+        }
+
+        /* ============ REVEAL ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.94);
+            transition: all 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-scale.active { opacity: 1; transform: scale(1); }
+
+        /* ============ HERO ============ */
+        .hero-title span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: heroFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes heroFade { to { opacity: 1; transform: translateY(0); } }
+        .hero-title span:nth-child(1) { animation-delay: 0.2s; }
+        .hero-title span:nth-child(2) { animation-delay: 0.35s; }
+        .hero-title span:nth-child(3) { animation-delay: 0.5s; }
+
+        .hero-fade {
+            opacity: 0;
+            animation: heroFadeSimple 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes heroFadeSimple { to { opacity: 1; } }
+
+        /* ============ LÍNEA DORADA ============ */
+        .line-gold {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #C5A028, transparent);
+            position: relative;
+            overflow: hidden;
+        }
+        .line-gold::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, #F0D77A, transparent);
+            animation: lineMove 2s ease-in-out infinite;
+        }
+        @keyframes lineMove {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* ============ SCROLLBAR ============ */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050811; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #C5A028, #0D1322);
+            border-radius: 4px;
+        }
+
+        /* ============ NAV LINK ============ */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -6px; left: 0;
+            width: 0; height: 1px;
+            background: #C5A028;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* ============ IMÁGENES ============ */
+        .img-premium {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(197, 160, 40, 0.2);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .img-premium img {
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-premium:hover {
+            border-color: rgba(197, 160, 40, 0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .img-premium:hover img { transform: scale(1.05); }
+
+        /* ============ INDICADORES SLIDER ============ */
+        .slider-dots {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 40;
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            background: rgba(5, 8, 17, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 40, 0.25);
+            border-radius: 9999px;
+        }
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(197, 160, 40, 0.3);
+            cursor: pointer;
+            transition: all 0.5s ease;
+            border: none;
+            padding: 0;
+        }
+        .slider-dot.active {
+            background: #C5A028;
+            width: 32px;
+            border-radius: 4px;
+            box-shadow: 0 0 12px rgba(197, 160, 40, 0.6);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .slider-dots { bottom: 1rem; padding: 0.5rem 1rem; }
+        }
+    </style>
+</head>
+<body class="bg-matbolBg text-slate-100 antialiased selection:bg-matbolGold selection:text-matbolBg">
+
+    <!-- ============ FONDOS ROTATIVOS ============ -->
+    <div class="bg-slider">
+        <div class="bg-slide active"></div>
+        <div class="bg-slide"></div>
+        <div class="bg-slide"></div>
+    </div>
+    <div class="bg-overlay"></div>
+
+    <!-- ============ INDICADORES ============ -->
+    <div class="slider-dots">
+        <button class="slider-dot active" data-slide="0" aria-label="Fondo 1"></button>
+        <button class="slider-dot" data-slide="1" aria-label="Fondo 2"></button>
+        <button class="slider-dot" data-slide="2" aria-label="Fondo 3"></button>
+    </div>
+
+    <!-- ============ NAVBAR ============ -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#050811]/70 backdrop-blur-xl border-b gold-border">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <a href="#inicio" class="flex items-center space-x-4 hero-fade">
+                <img src="logo1.jpg" alt="MATBOL" class="logo-img h-14 w-14 object-contain rounded-sm border gold-border">
+                <div>
+                    <span class="font-bold tracking-widest text-white text-sm block">MATBOL</span>
+                    <span class="text-[9px] text-matbolGold tracking-[0.25em] uppercase font-medium">Global Holdings S.R.L.</span>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center space-x-10 text-xs tracking-widest uppercase font-medium text-slate-300">
+                <a href="#institucion" class="nav-link hover:text-matbolGold transition-colors duration-300">Institución</a>
+                <a href="#modelo" class="nav-link hover:text-matbolGold transition-colors duration-300">Modelo ACRA</a>
+                <a href="#servicios" class="nav-link hover:text-matbolGold transition-colors duration-300">Servicios</a>
+                <a href="#flujo" class="nav-link hover:text-matbolGold transition-colors duration-300">Operativa</a>
+                <a href="#contacto" class="px-6 py-2.5 border gold-border-strong text-matbolGold hover:bg-matbolGold hover:text-matbolBg transition-all duration-300 font-semibold">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden pt-32 pb-24">
+        <div class="absolute inset-0 bg-grid-gold opacity-20"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-4xl">
+                <div class="inline-flex items-center gap-3 mb-8 hero-fade" style="animation-delay: 0.2s;">
+                    <span class="line-gold"></span>
+                    <span class="text-xs uppercase tracking-[0.35em] text-matbolGold font-semibold">
+                        División ACRA · Respaldo Jurídico
+                    </span>
+                </div>
+
+                <h1 class="hero-title text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-8 leading-[1.05] text-white gold-glow">
+                    <span>Confianza,</span>
+                    <span class="block mt-2">Transparencia</span>
+                    <span class="block mt-2 italic font-normal gold-text">y Resultados.</span>
+                </h1>
+
+                <p class="text-base md:text-lg text-matbolTextLight max-w-2xl mb-12 font-light leading-relaxed hero-fade" style="animation-delay: 0.7s;">
+                    Desarrollo, administración y formalización de operaciones de financiamiento privado entre particulares, bajo estrictos marcos normativos, contractuales y jurídicos.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 hero-fade" style="animation-delay: 0.9s;">
+                    <a href="#modelo" class="btn-gold w-full sm:w-auto px-10 py-4 font-bold text-xs uppercase tracking-[0.2em] inline-flex items-center justify-center gap-3">
+                        Conocer el Modelo
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                    <a href="#contacto" class="btn-ghost w-full sm:w-auto px-10 py-4 font-bold text-xs uppercase tracking-[0.2em] inline-flex items-center justify-center gap-3">
+                        Contactar Asesoría
+                        <i class="fa-solid fa-envelope text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ INSTITUCIÓN ============ -->
+    <section id="institucion" class="py-28 relative border-t gold-border bg-matbolBgAlt/60 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 reveal-left">
+                    <span class="text-xs uppercase tracking-[0.3em] text-matbolGold font-semibold block mb-4">Institución</span>
+                    <h2 class="text-3xl md:text-5xl font-bold leading-tight text-white mb-6">
+                        Una firma dedicada a la <br>
+                        <span class="gold-text italic font-normal">solidez contractual</span>
+                    </h2>
+                    <div class="line-gold mb-8"></div>
+                    <p class="text-matbolText font-light leading-relaxed mb-4">
+                        <strong class="text-white font-medium">MATBOL GLOBAL HOLDINGS S.R.L.</strong> es la empresa que desarrolla y administra diferentes servicios y actividades empresariales.
+                    </p>
+                    <p class="text-matbolText font-light leading-relaxed">
+                        Dentro de su estructura se encuentra <strong class="text-matbolGold font-medium">ACRA – Administración de Contratos y Recuperación de Activos</strong>, orientada a formalizar y administrar operaciones de financiamiento privado entre particulares.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-7 reveal-right">
+                    <div class="img-premium rounded-sm h-[400px] md:h-[500px]">
+                        <img src="imagen1.jpg" alt="Oficina corporativa MATBOL GLOBAL HOLDINGS S.R.L.">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ MODELO ACRA ============ -->
+    <section id="modelo" class="py-28 relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <span class="text-xs uppercase tracking-[0.3em] text-matbolGold font-semibold block mb-4">Modelo Operativo</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-5">
+                    La Arquitectura de <span class="gold-text">Nuestros Servicios</span>
+                </h2>
+                <p class="text-matbolText font-light">
+                    El modelo funciona con tres partes. Tres roles, una sola finalidad: garantizar transparencia y respaldo jurídico en cada operación.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <!-- Acreedor -->
+                <div class="card-premium p-10 reveal-scale">
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="text-matbolGold font-serif text-3xl font-bold">01</div>
+                        <div class="w-10 h-10 border gold-border flex items-center justify-center text-matbolGold">
+                            <i class="fa-solid fa-user-tie text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">El Acreedor</h3>
+                    <p class="text-matbolText text-sm font-light leading-relaxed">
+                        Es la persona que entrega o presta su propio dinero. <strong class="text-slate-300 font-medium">MATBOL/ACRA</strong> no recibe ese dinero para administrarlo como fondo ni lo presta por cuenta propia.
+                    </p>
+                </div>
+
+                <!-- MATBOL / ACRA -->
+                <div class="card-featured p-10 reveal-scale relative" style="transition-delay: 150ms;">
+                    <div class="absolute -top-3 right-8 bg-matbolGold text-matbolBg text-[9px] font-bold px-4 py-1.5 uppercase tracking-[0.2em]">
+                        Rol Central
+                    </div>
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="text-matbolGold font-serif text-3xl font-bold">02</div>
+                        <div class="w-10 h-10 border gold-border-strong flex items-center justify-center text-matbolGold bg-matbolGold/10">
+                            <i class="fa-solid fa-file-contract text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">MATBOL / ACRA</h3>
+                    <p class="text-matbolTextLight text-sm font-light leading-relaxed">
+                        Actúa como administrador y formalizador del contrato, ayudando a estructurar la operación, documentarla y hacer seguimiento al cumplimiento.
+                    </p>
+                </div>
+
+                <!-- Prestatario -->
+                <div class="card-premium p-10 reveal-scale" style="transition-delay: 300ms;">
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="text-matbolGold font-serif text-3xl font-bold">03</div>
+                        <div class="w-10 h-10 border gold-border flex items-center justify-center text-matbolGold">
+                            <i class="fa-solid fa-handshake text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">El Prestatario</h3>
+                    <p class="text-matbolText text-sm font-light leading-relaxed">
+                        Es la persona que recibe el dinero del acreedor y adquiere la obligación de devolverlo según las condiciones pactadas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Imagen + Punto Clave -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal-left">
+                    <div class="img-premium rounded-sm h-[400px]">
+                        <img src="imagen2.jpg" alt="Personas dándose la mano en acuerdo formal">
+                    </div>
+                </div>
+                <div class="reveal-right">
+                    <div class="card-premium p-10 border-l-4" style="border-left-color: #C5A028;">
+                        <div class="flex items-start gap-5">
+                            <div class="w-12 h-12 border gold-border-strong flex items-center justify-center text-matbolGold flex-shrink-0">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-matbolGold uppercase tracking-[0.2em] text-xs font-bold mb-3">Punto Clave</h4>
+                                <p class="text-sm text-slate-300 font-light leading-relaxed">
+                                    <strong class="text-white font-medium">MATBOL/ACRA no es el acreedor ni el prestatario</strong>; su función es prestar el servicio de administración, formalización y seguimiento de la operación privada.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SERVICIOS ============ -->
+    <section id="servicios" class="py-28 bg-matbolBgAlt/70 backdrop-blur-sm border-y gold-border relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <span class="text-xs uppercase tracking-[0.3em] text-matbolGold font-semibold block mb-4">Servicios</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-5">
+                    Qué <span class="gold-text">Ofrecemos</span>
+                </h2>
+                <p class="text-matbolText font-light">
+                    Servicios integrales de administración, formalización y seguimiento de operaciones de financiamiento privado entre particulares.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <!-- Servicio 1 -->
+                <div class="card-premium p-10 reveal-scale">
+                    <div class="w-14 h-14 border gold-border-strong flex items-center justify-center text-matbolGold mb-6">
+                        <i class="fa-solid fa-file-signature text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Formalización de Contratos</h3>
+                    <p class="text-matbolText text-sm font-light leading-relaxed">
+                        Redacción y estructuración de contratos claros y completos, incluyendo reconocimiento de firmas, pagaré, plan de pagos y garantías como inmuebles u otros bienes admisibles.
+                    </p>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="card-premium p-10 reveal-scale" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 border gold-border-strong flex items-center justify-center text-matbolGold mb-6">
+                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Garantías y Respaldo</h3>
+                    <p class="text-matbolText text-sm font-light leading-relaxed">
+                        Establecimiento de garantías reales o personales que respalden la operación, brindando seguridad tanto al acreedor como al prestatario durante todo el ciclo del contrato.
+                    </p>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="card-premium p-10 reveal-scale" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 border gold-border-strong flex items-center justify-center text-matbolGold mb-6">
+                        <i class="fa-solid fa-magnifying-glass-chart text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Seguimiento y Cumplimiento</h3>
+                    <p class="text-matbolText text-sm font-light leading-relaxed">
+                        Seguimiento continuo de cada operación. En caso de incumplimiento, se realizan las gestiones de mora y, cuando corresponda, se deriva el proceso a un abogado para las acciones legales.
+                    </p>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="card-premium p-10 reveal-scale" style="transition-delay: 300ms;">
+                    <div class="w-14 h-14 border gold-border-strong flex items-center justify-center text-matbolGold mb-6">
+                        <i class="fa-solid fa-scale-balanced text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Recuperación de Activos</h3>
+                    <p class="text-matbolText text-sm font-light leading-relaxed">
+                        Gestión de cobranza y recuperación de activos con procedimientos formales, respetando los plazos y condiciones pactadas en el contrato original y bajo estricto marco legal.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Imagen + texto -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal-right lg:order-2">
+                    <div class="img-premium rounded-sm h-[400px]">
+                        <img src="imagen3.jpg" alt="Firma y formalización de contrato">
+                    </div>
+                </div>
+                <div class="reveal-left lg:order-1">
+                    <span class="text-xs uppercase tracking-[0.3em] text-matbolGold font-semibold block mb-4">Compromiso</span>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">
+                        Cada operación se <span class="gold-text">documenta y respalda</span> jurídicamente
+                    </h3>
+                    <p class="text-matbolText font-light leading-relaxed mb-4">
+                        La operación puede incluir contrato, reconocimiento de firmas, pagaré, plan de pagos y garantías como un inmueble u otro bien admisible.
+                    </p>
+                    <p class="text-matbolText font-light leading-relaxed">
+                        Todo el proceso queda formalmente documentado, garantizando trazabilidad y respaldo legal para ambas partes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FLUJO ============ -->
+    <section id="flujo" class="py-28 relative">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-20 reveal">
+                <span class="text-xs uppercase tracking-[0.3em] text-matbolGold font-semibold block mb-4">Metodología</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-5">
+                    Flujo Básico de <span class="gold-text">Operación</span>
+                </h2>
+                <p class="text-matbolText font-light max-w-xl mx-auto">
+                    <strong class="text-slate-300 font-medium">Acreedor</strong> → entrega dinero → <strong class="text-slate-300 font-medium">Prestatario</strong>
+                    <br>
+                    <span class="text-matbolGold text-sm">Mientras tanto: MATBOL/ACRA → formaliza + administra + realiza seguimiento</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative reveal mb-16">
+                <div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-matbolGold/40 to-transparent"></div>
+
+                <div class="text-center relative group">
+                    <div class="w-24 h-24 mx-auto mb-8 border gold-border-strong flex items-center justify-center text-matbolGold text-3xl font-serif font-bold bg-matbolSurface/90 backdrop-blur-sm transition-all duration-500 group-hover:border-matbolGold group-hover:bg-matbolGold/10 relative z-10">
+                        A
+                    </div>
+                    <h4 class="text-lg font-bold mb-3 text-white">Entrega de Fondos</h4>
+                    <p class="text-sm text-matbolText font-light leading-relaxed px-4">
+                        El Acreedor entrega de forma directa y privada el dinero al Prestatario.
+                    </p>
+                </div>
+
+                <div class="text-center relative group">
+                    <div class="w-24 h-24 mx-auto mb-8 border gold-border-strong flex items-center justify-center text-matbolGold text-3xl font-serif font-bold bg-matbolSurface/90 backdrop-blur-sm transition-all duration-500 group-hover:border-matbolGold group-hover:bg-matbolGold/10 relative z-10">
+                        B
+                    </div>
+                    <h4 class="text-lg font-bold mb-3 text-white">Formalización y Control</h4>
+                    <p class="text-sm text-matbolText font-light leading-relaxed px-4">
+                        MATBOL / ACRA gestiona contrato, reconocimiento de firmas, pagaré, plan de pagos y garantías.
+                    </p>
+                </div>
+
+                <div class="text-center relative group">
+                    <div class="w-24 h-24 mx-auto mb-8 border gold-border-strong flex items-center justify-center text-matbolGold text-3xl font-serif font-bold bg-matbolSurface/90 backdrop-blur-sm transition-all duration-500 group-hover:border-matbolGold group-hover:bg-matbolGold/10 relative z-10">
+                        C
+                    </div>
+                    <h4 class="text-lg font-bold mb-3 text-white">Seguimiento y Mora</h4>
+                    <p class="text-sm text-matbolText font-light leading-relaxed px-4">
+                        Seguimiento continuo. En caso de incumplimiento, gestiones de mora y derivación a un abogado para acciones legales.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Imagen + texto -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal-left">
+                    <div class="img-premium rounded-sm h-[400px]">
+                        <img src="imagen4.jpg" alt="Profesional gestionando una operación">
+                    </div>
+                </div>
+                <div class="reveal-right">
+                    <span class="text-xs uppercase tracking-[0.3em] text-matbolGold font-semibold block mb-4">Gestión Integral</span>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">
+                        Acompañamiento en <span class="gold-text">cada etapa</span>
+                    </h3>
+                    <p class="text-matbolText font-light leading-relaxed mb-4">
+                        Desde la entrega del capital hasta el cierre de la operación, MATBOL/ACRA acompaña a las partes en cada etapa del proceso, garantizando el cumplimiento de lo pactado.
+                    </p>
+                    <p class="text-matbolText font-light leading-relaxed">
+                        Nuestro equipo se encarga de la formalización técnica y administrativa, permitiendo que las partes se concentren en el objeto de la operación.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SEGURIDAD ============ -->
+    <section class="py-28 bg-matbolBgAlt/70 backdrop-blur-sm border-y gold-border relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal-right lg:order-2">
+                    <div class="img-premium rounded-sm h-[400px]">
+                        <img src="imagen5.jpg" alt="Seguridad jurídica y estructuración">
+                    </div>
+                </div>
+                <div class="reveal-left lg:order-1">
+                    <span class="text-xs uppercase tracking-[0.3em] text-matbolGold font-semibold block mb-4">Seguridad Jurídica</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                        Estructuración <span class="gold-text">privada y formal</span>
+                    </h2>
+                    <p class="text-matbolTextLight font-light leading-relaxed mb-6">
+                        Trabajamos bajo estrictos marcos normativos, contractuales y jurídicos. Cada operación se respalda con instrumentos legales que protegen tanto al acreedor como al prestatario.
+                    </p>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 border gold-border flex items-center justify-center text-matbolGold flex-shrink-0 mt-0.5">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm text-slate-300 font-light leading-relaxed">Separación absoluta de roles entre las partes</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 border gold-border flex items-center justify-center text-matbolGold flex-shrink-0 mt-0.5">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm text-slate-300 font-light leading-relaxed">Documentación formal de cada operación</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 border gold-border flex items-center justify-center text-matbolGold flex-shrink-0 mt-0.5">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm text-slate-300 font-light leading-relaxed">Trazabilidad completa del proceso</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 border gold-border flex items-center justify-center text-matbolGold flex-shrink-0 mt-0.5">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm text-slate-300 font-light leading-relaxed">Derivación legal en caso de incumplimiento</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section id="contacto" class="py-28 relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <span class="text-xs uppercase tracking-[0.3em] text-matbolGold font-semibold block mb-4">Contacto</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-5">
+                    Estamos para <span class="gold-text">asesorarle</span>
+                </h2>
+                <p class="text-matbolText font-light">
+                    Para consultas sobre nuestros servicios de administración, formalización y seguimiento de operaciones privadas, contáctenos por cualquiera de los siguientes canales.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Información de Contacto -->
+                <div class="reveal-left">
+                    <div class="card-premium p-10 h-full">
+                        <div class="flex items-center gap-4 mb-10 pb-6 border-b gold-border">
+                            <img src="logo1.jpg" alt="MATBOL" class="h-16 w-16 object-contain rounded-sm border gold-border">
+                            <div>
+                                <h4 class="font-bold text-lg text-white">MATBOL GLOBAL HOLDINGS S.R.L.</h4>
+                                <p class="text-xs text-matbolGold uppercase tracking-[0.25em] mt-1">División ACRA</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Dirección -->
+                            <div class="flex items-start gap-5 group">
+                                <div class="w-12 h-12 border gold-border flex items-center justify-center text-matbolGold flex-shrink-0 transition-colors duration-300 group-hover:bg-matbolGold/10">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-1">Oficina</h5>
+                                    <p class="text-sm text-slate-300 font-light leading-relaxed">
+                                        Dirección de la oficina corporativa<br>
+                                        Ciudad, País
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Teléfono -->
+                            <div class="flex items-start gap-5 group">
+                                <div class="w-12 h-12 border gold-border flex items-center justify-center text-matbolGold flex-shrink-0 transition-colors duration-300 group-hover:bg-matbolGold/10">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-1">Teléfono</h5>
+                                    <p class="text-sm text-slate-300 font-light leading-relaxed">
+                                        <a href="tel:+000000000" class="hover:text-matbolGold transition">+00 000 000 000</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="flex items-start gap-5 group">
+                                <div class="w-12 h-12 border gold-border flex items-center justify-center text-matbolGold flex-shrink-0 transition-colors duration-300 group-hover:bg-matbolGold/10">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-1">Email</h5>
+                                    <p class="text-sm text-slate-300 font-light leading-relaxed">
+                                        <a href="mailto:info@matbol.com" class="hover:text-matbolGold transition">info@matbol.com</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- WhatsApp -->
+                            <div class="flex items-start gap-5 group">
+                                <div class="w-12 h-12 border gold-border flex items-center justify-center text-matbolGold flex-shrink-0 transition-colors duration-300 group-hover:bg-matbolGold/10">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-1">WhatsApp</h5>
+                                    <p class="text-sm text-slate-300 font-light leading-relaxed">
+                                        <a href="https://wa.me/000000000" target="_blank" rel="noopener" class="hover:text-matbolGold transition">+00 000 000 000</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Horario -->
+                            <div class="flex items-start gap-5 group">
+                                <div class="w-12 h-12 border gold-border flex items-center justify-center text-matbolGold flex-shrink-0 transition-colors duration-300 group-hover:bg-matbolGold/10">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-1">Horario</h5>
+                                    <p class="text-sm text-slate-300 font-light leading-relaxed">
+                                        Lunes a Viernes · 09:00 – 18:00
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario -->
+                <div class="reveal-right">
+                    <div class="card-premium p-10 h-full">
+                        <h4 class="text-xl font-bold text-white mb-6">Envíenos su consulta</h4>
+                        <form action="https://formsubmit.co/info@matbol.com" method="POST" class="space-y-5">
+                            <!-- FormSubmit config -->
+                            <input type="hidden" name="_subject" value="Nueva consulta desde el sitio web MATBOL">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+
+                            <div>
+                                <label class="block text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-2">Nombre completo</label>
+                                <input type="text" name="Nombre" required
+                                    class="w-full bg-matbolSurface/80 border gold-border text-slate-100 px-4 py-3 text-sm focus:outline-none focus:border-matbolGold transition-colors"
+                                    placeholder="Su nombre">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-2">Email</label>
+                                <input type="email" name="Email" required
+                                    class="w-full bg-matbolSurface/80 border gold-border text-slate-100 px-4 py-3 text-sm focus:outline-none focus:border-matbolGold transition-colors"
+                                    placeholder="correo@ejemplo.com">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-2">Teléfono</label>
+                                <input type="tel" name="Telefono"
+                                    class="w-full bg-matbolSurface/80 border gold-border text-slate-100 px-4 py-3 text-sm focus:outline-none focus:border-matbolGold transition-colors"
+                                    placeholder="+00 000 000 000">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-2">Asunto</label>
+                                <select name="Asunto"
+                                    class="w-full bg-matbolSurface/80 border gold-border text-slate-100 px-4 py-3 text-sm focus:outline-none focus:border-matbolGold transition-colors">
+                                    <option value="Consulta general">Consulta general</option>
+                                    <option value="Formalización de contratos">Formalización de contratos</option>
+                                    <option value="Garantías y respaldo">Garantías y respaldo</option>
+                                    <option value="Seguimiento y cumplimiento">Seguimiento y cumplimiento</option>
+                                    <option value="Recuperación de activos">Recuperación de activos</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-2">Mensaje</label>
+                                <textarea name="Mensaje" rows="5" required
+                                    class="w-full bg-matbolSurface/80 border gold-border text-slate-100 px-4 py-3 text-sm focus:outline-none focus:border-matbolGold transition-colors resize-none"
+                                    placeholder="Describa brevemente su consulta..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-gold w-full px-8 py-4 font-bold text-xs uppercase tracking-[0.2em] inline-flex items-center justify-center gap-3">
+                                Enviar Consulta
+                                <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                            </button>
+
+                            <p class="text-[10px] text-matbolText text-center mt-4">
+                                Al enviar acepta que su consulta sea gestionada de forma confidencial por MATBOL/ACRA.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Imagen inferior contacto -->
+            <div class="mt-16 reveal">
+                <div class="img-premium rounded-sm h-[300px]">
+                    <img src="imagen6.jpg" alt="Escritorio corporativo con teléfono y agenda">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="py-16 bg-matbolBg/90 backdrop-blur-sm border-t gold-border relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+                <!-- Marca -->
+                <div>
+                    <div class="flex items-center space-x-4 mb-4">
+                        <img src="logo1.jpg" alt="MATBOL" class="h-14 w-14 object-contain rounded-sm border gold-border logo-img">
+                        <div>
+                            <span class="font-bold tracking-widest text-white text-sm block">MATBOL</span>
+                            <span class="text-[9px] text-matbolGold tracking-[0.25em] uppercase">Global Holdings S.R.L.</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-matbolText font-light leading-relaxed">
+                        Administración de Contratos y Recuperación de Activos. Formalización y seguimiento de operaciones privadas.
+                    </p>
+                </div>
+
+                <!-- Navegación -->
+                <div>
+                    <h5 class="text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-5">Navegación</h5>
+                    <ul class="space-y-3 text-sm text-matbolText font-light">
+                        <li><a href="#institucion" class="hover:text-matbolGold transition">Institución</a></li>
+                        <li><a href="#modelo" class="hover:text-matbolGold transition">Modelo ACRA</a></li>
+                        <li><a href="#servicios" class="hover:text-matbolGold transition">Servicios</a></li>
+                        <li><a href="#flujo" class="hover:text-matbolGold transition">Operativa</a></li>
+                        <li><a href="#contacto" class="hover:text-matbolGold transition">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contacto -->
+                <div>
+                    <h5 class="text-xs uppercase tracking-[0.2em] text-matbolGold font-semibold mb-5">Contacto</h5>
+                    <ul class="space-y-3 text-sm text-matbolText font-light">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-matbolGold text-xs"></i>
+                            <a href="mailto:info@matbol.com" class="hover:text-matbolGold transition">info@matbol.com</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-matbolGold text-xs"></i>
+                            <a href="tel:+000000000" class="hover:text-matbolGold transition">+00 000 000 000</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-matbolGold text-xs"></i>
+                            <a href="https://wa.me/000000000" target="_blank" rel="noopener" class="hover:text-matbolGold transition">WhatsApp</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t gold-border flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-matbolText font-light tracking-wider text-center md:text-left">
+                    &copy; 2026 MATBOL GLOBAL HOLDINGS S.R.L. — Todos los derechos reservados.
+                </p>
+                <p class="text-[10px] text-matbolText/70 font-light tracking-widest uppercase">
+                    División ACRA · Administración de Contratos y Recuperación de Activos
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============ SCRIPTS ============ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            /* ========== SLIDER DE FONDOS ========== */
+            const slides = document.querySelectorAll('.bg-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            const slideDuration = 8000;
+            let slideInterval;
+
+            function goToSlide(index) {
+                slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                goToSlide((currentSlide + 1) % slides.length);
+            }
+
+            function startSlider() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, slideDuration);
+            }
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                    startSlider();
+                });
+            });
+
+            if (slides.length > 0) startSlider();
+
+            /* ========== REVEAL ON SCROLL ========== */
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -60px 0px" });
+
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+                .forEach(el => observer.observe(el));
+
+            /* ========== SMOOTH SCROLL ========== */
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
